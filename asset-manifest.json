@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.js": "/oscaletta/trendie/static/js/main.9aa5cd1d.chunk.js",
-    "main.js.map": "/oscaletta/trendie/static/js/main.9aa5cd1d.chunk.js.map",
-    "runtime-main.js": "/oscaletta/trendie/static/js/runtime-main.a60d903e.js",
-    "runtime-main.js.map": "/oscaletta/trendie/static/js/runtime-main.a60d903e.js.map",
-    "static/js/2.0398432d.chunk.js": "/oscaletta/trendie/static/js/2.0398432d.chunk.js",
-    "static/js/2.0398432d.chunk.js.map": "/oscaletta/trendie/static/js/2.0398432d.chunk.js.map",
-    "index.html": "/oscaletta/trendie/index.html",
-    "static/js/2.0398432d.chunk.js.LICENSE.txt": "/oscaletta/trendie/static/js/2.0398432d.chunk.js.LICENSE.txt"
+    "main.js": "/trendie/static/js/main.9aa5cd1d.chunk.js",
+    "main.js.map": "/trendie/static/js/main.9aa5cd1d.chunk.js.map",
+    "runtime-main.js": "/trendie/static/js/runtime-main.d5c50f6c.js",
+    "runtime-main.js.map": "/trendie/static/js/runtime-main.d5c50f6c.js.map",
+    "static/js/2.0398432d.chunk.js": "/trendie/static/js/2.0398432d.chunk.js",
+    "static/js/2.0398432d.chunk.js.map": "/trendie/static/js/2.0398432d.chunk.js.map",
+    "index.html": "/trendie/index.html",
+    "static/js/2.0398432d.chunk.js.LICENSE.txt": "/trendie/static/js/2.0398432d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a60d903e.js",
+    "static/js/runtime-main.d5c50f6c.js",
     "static/js/2.0398432d.chunk.js",
     "static/js/main.9aa5cd1d.chunk.js"
   ]
