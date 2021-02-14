@@ -36,26 +36,34 @@ function App() {
   const classes = useStyles();
   const [tokenData, setTokenData] = useState('')
   const [priceData, setPriceData] = useState(0)
+  const [isLoading, setIsLoading] = useState(false);
 
+  let currentDate = new Date();
+  const formattedDate = currentDate.getDate() + '-' + currentDate.getMonth() + '-' + currentDate.getFullYear();
 
+  
   useEffect(() => {
-    axios.get('https://api.coingecko.com/api/v3/coins/sora/history?date=13-02-2021')
+    setIsLoading(true);
+    const ticker = "chainlink";
+    const urlTokenHistory = 'https://api.coingecko.com/api/v3/coins/'+ticker+'/history?date='+formattedDate;
+
+    axios.get(urlTokenHistory)
          .then(response => {
             const data  = response.data
             setTokenData(data)
          });
 
     //fetching updated price
-    const ticker = "sora";
     axios.get('https://api.coingecko.com/api/v3/simple/price?ids='+ticker+'&vs_currencies=usd')
          .then(response => {
-            //console.log(response.data.sora)
-            const data  = response.data.sora
+            console.log(response.data[ticker] && response.data[ticker].usd)
+            const data  = response.data[ticker]
             setPriceData(data)
          });
+    setIsLoading(false);
   },[])
   
-  console.log(priceData.usd);
+  //console.log(priceData.usd);
 
   return (
     <Container maxWidth="sm">
@@ -74,7 +82,7 @@ function App() {
               <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
                   <Typography gutterBottom variant="subtitle1">
-                    {tokenData.name}
+                    {isLoading ? (<div>Loading ...</div>) : (tokenData.name)}
                   </Typography>
                   <Typography variant="body2" gutterBottom>
                     Soramitsu
@@ -90,7 +98,7 @@ function App() {
                 </Grid>
               </Grid>
               <Grid item>
-                <Typography variant="subtitle1">{priceData && priceData.usd }</Typography>
+                <Typography variant="subtitle1">{isLoading ? ('Loading ...') : (priceData && priceData.usd )}</Typography>
               </Grid>
             </Grid>
           </Grid>
