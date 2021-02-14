@@ -34,21 +34,30 @@ const useStyles = makeStyles((theme) => ({
 function App() {
 
   const classes = useStyles();
-  const [TokenData, setTokenData] = useState('')
+  const [tokenData, setTokenData] = useState('')
+  const [priceData, setPriceData] = useState(0)
+
 
   useEffect(() => {
-    fetch('https://api.coingecko.com/api/v3/coins/sora/history?date=13-02-2021')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        setTokenData(data)
-      })
-  })
+    axios.get('https://api.coingecko.com/api/v3/coins/sora/history?date=13-02-2021')
+         .then(response => {
+            const data  = response.data
+            setTokenData(data)
+         });
+
+    //fetching updated price
+    const ticker = "sora";
+    axios.get('https://api.coingecko.com/api/v3/simple/price?ids='+ticker+'&vs_currencies=usd')
+         .then(response => {
+            //console.log(response.data.sora)
+            const data  = response.data.sora
+            setPriceData(data)
+         });
+  },[])
   
-  console.log(TokenData);
+  console.log(priceData.usd);
 
   return (
-    
     <Container maxWidth="sm">
           <Paper className={classes.paper}>
           <Grid container spacing={2}>
@@ -57,7 +66,7 @@ function App() {
                 <img
                   className={classes.img}
                   alt="complex"
-                  src=""
+                  src={tokenData && tokenData.image && tokenData.image.small}
                 />
               </ButtonBase>
             </Grid>
@@ -65,7 +74,7 @@ function App() {
               <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
                   <Typography gutterBottom variant="subtitle1">
-                    {TokenData.name}
+                    {tokenData.name}
                   </Typography>
                   <Typography variant="body2" gutterBottom>
                     Soramitsu
@@ -81,7 +90,7 @@ function App() {
                 </Grid>
               </Grid>
               <Grid item>
-                <Typography variant="subtitle1"></Typography>
+                <Typography variant="subtitle1">{priceData && priceData.usd }</Typography>
               </Grid>
             </Grid>
           </Grid>
