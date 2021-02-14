@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/oscaletta/trendie/static/js/main.9aa5cd1d.chunk.js",
+    "main.js.map": "/oscaletta/trendie/static/js/main.9aa5cd1d.chunk.js.map",
+    "runtime-main.js": "/oscaletta/trendie/static/js/runtime-main.a60d903e.js",
+    "runtime-main.js.map": "/oscaletta/trendie/static/js/runtime-main.a60d903e.js.map",
+    "static/js/2.0398432d.chunk.js": "/oscaletta/trendie/static/js/2.0398432d.chunk.js",
+    "static/js/2.0398432d.chunk.js.map": "/oscaletta/trendie/static/js/2.0398432d.chunk.js.map",
+    "index.html": "/oscaletta/trendie/index.html",
+    "static/js/2.0398432d.chunk.js.LICENSE.txt": "/oscaletta/trendie/static/js/2.0398432d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a60d903e.js",
+    "static/js/2.0398432d.chunk.js",
+    "static/js/main.9aa5cd1d.chunk.js"
+  ]
+}
