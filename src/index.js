@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from "react-dom";
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -36,12 +36,16 @@ function App() {
   const classes = useStyles();
   const [TokenData, setTokenData] = useState('')
 
-  axios.get('https://api.coingecko.com/api/v3/coins/sora/history?date=13-02-2021')
-         .then(response => {
-            console.log(response.data)
-            const dataT  = response.data
-            setTokenData(dataT)
-         });
+  useEffect(() => {
+    fetch('https://api.coingecko.com/api/v3/coins/sora/history?date=13-02-2021')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        setTokenData(data)
+      })
+  })
+  
+  console.log(TokenData);
 
   return (
     
@@ -53,7 +57,7 @@ function App() {
                 <img
                   className={classes.img}
                   alt="complex"
-                  src="https://assets.coingecko.com/coins/images/11093/small/sora_logo_cg_white.png?1588284194"
+                  src=""
                 />
               </ButtonBase>
             </Grid>
@@ -61,7 +65,7 @@ function App() {
               <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
                   <Typography gutterBottom variant="subtitle1">
-                    Sora
+                    {TokenData.name}
                   </Typography>
                   <Typography variant="body2" gutterBottom>
                     Soramitsu
@@ -77,7 +81,7 @@ function App() {
                 </Grid>
               </Grid>
               <Grid item>
-                <Typography variant="subtitle1">$262.00</Typography>
+                <Typography variant="subtitle1"></Typography>
               </Grid>
             </Grid>
           </Grid>
