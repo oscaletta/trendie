@@ -8,6 +8,8 @@ import Paper from "@material-ui/core/Paper";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import axios from 'axios';
 import SearchBar from './components/searchbar';
+import Header from './components/header';
+import { theme, ChakraProvider } from "@chakra-ui/react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +32,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const breakpoints = ["360px", "768px", "1024px", "1440px"];
+breakpoints.sm = breakpoints[0];
+breakpoints.md = breakpoints[1];
+breakpoints.lg = breakpoints[2];
+breakpoints.xl = breakpoints[3];
 
+const newTheme = {
+  ...theme,
+  breakpoints
+};
 
 function App() {
 
@@ -70,7 +81,11 @@ function App() {
 
   return (
     <>
+      <ChakraProvider theme={newTheme} resetCSS={true}>
+          <Header />
+      </ChakraProvider>
       <SearchBar input={input} setInput={setInput}/>
+      <button>Get data</button>
       <Container maxWidth="sm">
             <Paper className={classes.paper}>
             <Grid container spacing={2}>
