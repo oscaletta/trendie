@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import axios from 'axios';
+import SearchBar from './components/searchbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
 function App() {
 
   const classes = useStyles();
-  const [tokenData, setTokenData] = useState('')
-  const [priceData, setPriceData] = useState(0)
+  const [tokenData, setTokenData] = useState('');
+  const [priceData, setPriceData] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [input, setInput] = useState('');
 
   let currentDate = new Date();
   const formattedDate = currentDate.getDate() + '-' + currentDate.getMonth() + '-' + currentDate.getFullYear();
@@ -63,47 +65,51 @@ function App() {
     setIsLoading(false);
   },[])
   
-  //console.log(priceData.usd);
+  console.log(input);
+  
 
   return (
-    <Container maxWidth="sm">
-          <Paper className={classes.paper}>
-          <Grid container spacing={2}>
-            <Grid item>
-              <ButtonBase className={classes.image}>
-                <img
-                  className={classes.img}
-                  alt="complex"
-                  src={tokenData && tokenData.image && tokenData.image.small}
-                />
-              </ButtonBase>
-            </Grid>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={2}>
-                <Grid item xs>
-                  <Typography gutterBottom variant="subtitle1">
-                    {isLoading ? (<div>Loading ...</div>) : (tokenData.name)}
-                  </Typography>
-                  <Typography variant="body2" gutterBottom>
-                    Soramitsu
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    ID: 1030114
-                  </Typography>
+    <>
+      <SearchBar input={input} setInput={setInput}/>
+      <Container maxWidth="sm">
+            <Paper className={classes.paper}>
+            <Grid container spacing={2}>
+              <Grid item>
+                <ButtonBase className={classes.image}>
+                  <img
+                    className={classes.img}
+                    alt="complex"
+                    src={tokenData && tokenData.image && tokenData.image.small}
+                  />
+                </ButtonBase>
+              </Grid>
+              <Grid item xs={12} sm container>
+                <Grid item xs container direction="column" spacing={2}>
+                  <Grid item xs>
+                    <Typography gutterBottom variant="subtitle1">
+                      {isLoading ? (<div>Loading ...</div>) : (tokenData.name)}
+                    </Typography>
+                    <Typography variant="body2" gutterBottom>
+                      Soramitsu
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      ID: 1030114
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body2" style={{ cursor: "pointer" }}>
+                      Comprar
+                    </Typography>
+                  </Grid>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body2" style={{ cursor: "pointer" }}>
-                    Comprar
-                  </Typography>
+                  <Typography variant="subtitle1">{isLoading ? ('Loading ...') : (priceData && priceData.usd )}</Typography>
                 </Grid>
               </Grid>
-              <Grid item>
-                <Typography variant="subtitle1">{isLoading ? ('Loading ...') : (priceData && priceData.usd )}</Typography>
-              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
-    </Container>
+          </Paper>
+      </Container>
+    </>
   );
 }
 
